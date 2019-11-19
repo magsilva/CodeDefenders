@@ -1,0 +1,26 @@
+--- a/codedefenders/WEB-INF/web.xml	2019-11-03 21:29:10.456005513 +0100
++++ b/codedefenders/WEB-INF/web.xml	2019-11-03 21:21:45.548994149 +0100
+@@ -341,6 +341,23 @@
+     </servlet>
+     <!-- APIs end -->
+ 
++    <filter>
++        <filter-name>Remote Address Filter</filter-name>
++        <filter-class>org.apache.catalina.filters.RemoteAddrFilter</filter-class>
++        <init-param>
++        <param-name>allow</param-name>
++            <param-value>@@REMOTE_ADDRESS_REGEXP@@</param-value>
++        </init-param>
++    </filter>
++    <filter-mapping>
++        <filter-name>Remote Address Filter</filter-name>
++        <url-pattern>/admin</url-pattern>
++    </filter-mapping>
++    <filter-mapping>
++        <filter-name>Remote Address Filter</filter-name>
++        <url-pattern>/admin/*</url-pattern>
++    </filter-mapping>
++
+     <!-- Admin pages start -->
+     <servlet-mapping>
+         <servlet-name>AdminCreateGames</servlet-name>
